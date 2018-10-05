@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snmpAdaptor4j-mapping xmlns="http://www.sf.net/snmpAdaptor4j/mapping/1.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.sf.net/snmpAdaptor4j/mapping/1.1
+                      http://snmpAdaptor4j.sourceforge.net/xsd/snmpAdaptor4j-mapping-1.1.xsd">
+
+	<attributes>
+		<attribute name="counter" type="counter64" node="1" />
+		<attribute name="enabled" type="integer32" node="2"
+			writable="true" />
+	</attributes>
+
+	<notifications>
+		<enterprise node="2" userdata="userDataMap">
+			<generic-trap notif-type="jmx.attribute.change" code="linkUp" />
+			<generic-trap notif-type="jmx.attribute.change.down" code="linkDown" />
+		</enterprise>
+		<variable-bindings system-info="true">
+			<sequence-number node="100" />
+			<message node="101" />
+			<userdata-map name="userDataMap">
+				<entry key="counter" type="counter64" node="1" />
+				<entry key="enabled" type="integer32" node="2" />
+			</userdata-map>
+		</variable-bindings>
+	</notifications>
+
+</snmpAdaptor4j-mapping>
